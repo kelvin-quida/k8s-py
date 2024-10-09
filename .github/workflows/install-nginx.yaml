@@ -15,11 +15,6 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
     - name: Set Strict Host Key Checking
       run: echo "StrictHostKeyChecking=no" > ~/.ssh/config
-    - name: Debug SSH Setup
-      run: |
-        ls -la ~/.ssh/
-        cat ~/.ssh/id_rsa
-        cat ~/.ssh/config
     - name: Install NGINX
       run: |
         export HOST="${{ secrets.AKAMAI_INSTANCE_IP_ADDRESS }}"
