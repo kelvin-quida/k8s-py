@@ -2,6 +2,7 @@ name: Install NGINX
 on:
   workflow_dispatch:
   push:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,9 +14,9 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
     - name: Set Strict Host Key Checking
-      run: echo "${{ secrets.AKAMAI_INSTANCE_IP_ADDRESS }} $(ssh-keyscan -H ${secrets.AKAMAI_INSTANCE_IP_ADDRESS})" > ~/.ssh/known_hosts
+      run: echo "StrictHostKeyChecking=no" > ~/.ssh/config
     - name: Install NGINX
       run: |
-        export MY_HOST="${{ secrets.AKAMAI_INSTANCE_IP_ADDRESS }}"
-        ssh root@$MY_HOST sudo apt update
-        ssh root@$MY_HOST sudo apt install nginx -y
+        export HOST="${{ secrets.AKAMAI_INSTANCE_IP_ADDRESS }}"
+        ssh root@$HOST sudo apt update
+        ssh root@$HOST sudo apt install nginx -y
