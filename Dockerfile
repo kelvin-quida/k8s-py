@@ -11,6 +11,8 @@ RUN chmod +x /app/entrypoint.sh
 RUN apt-get update && \
     apt-get install -y python3-pip python3-dev python3-venv
 
+RUN apt-get install -y redis-tools
+
 RUN python3 -m venv /opt/venv
 
 RUN /opt/venv/bin/python -m pip install --upgrade pip

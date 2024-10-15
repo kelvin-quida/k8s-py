@@ -1,0 +1,21 @@
+services:
+  my-nginx-service:
+    image: nginx:latest
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - PORT=8080
+    volumes:
+      - mywebdata:/app/data
+  my-redis-service:
+    image: redis:latest
+    volumes:
+      - myredisdata:/data
+
+volumes:
+  mywebdata:
+  myredisdata:
