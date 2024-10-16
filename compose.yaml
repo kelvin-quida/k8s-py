@@ -2,7 +2,12 @@ services:
   my-nginx-service:
     image: nginx:latest
   web:
-    build: .
+    image: kelvinquida24/rk8s-py:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      tags:
+        - "kelvinquida24/rk8s-py:${TAG:-latest}"
     ports:
       - "8080:8080"
     env_file:
