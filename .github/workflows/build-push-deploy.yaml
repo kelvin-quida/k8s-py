@@ -24,7 +24,7 @@ jobs:
         run: |
           docker build -f Dockerfile \
             -t "$DH_USER/$REPO:latest" \
-            -t "$DH_USER/$REPO:${{ github.sha }}" \
+            -t "$DH_USER/$REPO:$(date +%s)" \
             .
       - name: Push the Docker image to Docker Hub
         run: |
