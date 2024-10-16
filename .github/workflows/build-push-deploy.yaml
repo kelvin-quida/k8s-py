@@ -46,3 +46,10 @@ jobs:
               sudo apt-get install docker-compose-plugin
             fi
           EOF
+      - name: Create .env file
+        run: |
+          echo "MY_SECRET_KEY=${{ secrets.MY_SECRET_KEY }}" >> .env
+          echo "API_ENDPOINT=${{ secrets.API_ENDPOINT }}" >> .env
+      - name: Ensure remote directory exists
+        run: |
+          ssh $SSH_OPTS $REMOTE mkdir -p $REMOTE_APP_DIR
